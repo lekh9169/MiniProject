@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 //import CuratedContents from './routing';
+import { Link,navigate } from '@reach/router';
+import { connect } from 'react-redux';
+import { getUserChoice , updatUserChoice } from '../../actions/UserActions';
+import PropTypes from 'prop-types';
+import "./complete.css";
 
 class UserInputs extends Component{
     constructor(props){
@@ -16,7 +21,7 @@ class UserInputs extends Component{
 
         this.handelChange = this.handelChange.bind(this);
         this.handelSubmit = this.handelSubmit.bind(this);
-
+        console.log("userInput");
     }
 
     // proceed = e => {
@@ -54,7 +59,7 @@ class UserInputs extends Component{
     }
 
     handelSkip(){
-        window.location=`/videos/${"_"}`;
+        //window.location=`/videos/${"_"}`;
     }
     handelSubmit(event){
         event.preventDefault();
@@ -62,7 +67,7 @@ class UserInputs extends Component{
         this.setState({nameS:str})
         console.log(this.state.nameS)
 
-        window.location=`/videos/${this.state}`;
+        //window.location=`/videos/${this.state}`;
         //console.log(this.state.name);
         alert('Name:'+ str);
        
@@ -76,12 +81,14 @@ class UserInputs extends Component{
         return(
             <div>
                 <h1>Please Answer these questions for getting Curated content</h1>
-                <form align="middle" >
+                <form align="center">
                     {/* <label>
                         type here:<input type="text" value={this.state.value} onChange={this.handelChange}/>
                     </label> */}
                     <br/>
-                    <label >
+                    
+                    <div className="formMain">
+                    <div id="formP">
                         <h2>Have You gone through any of these situatons?</h2>
                         <input  type ="checkbox" id = " cb1" name="value1" value=" abuse" onChange={this.handelChange}/>
                         <label   for="cb1">Abused</label>
@@ -102,16 +109,17 @@ class UserInputs extends Component{
                         <input   type ="checkbox" id = "cb6" name="value6" value=" " onChange={this.handelChange}/>
                         <label   for="cb6">None</label>
                         <br/>
-                    </label>
+                    </div>
+                    </div>
                     <br/>
                     
                     <br/>
-                    <label>
-                        <input type="submit" value="Save & Proceed" onClick={this.handelSubmit}/>
+                    <label >
+                        <input id="btnforChange" type="submit" value="Save & Proceed" onClick={this.handelSubmit}/>
                     </label>
 
-                    <label>
-                        <input type="button" value="skip" onClick={this.handelSkip}/>
+                    <label >
+                        <input id="btnforChange" type="button" value="skip" onClick={this.handelSkip}/>
                     </label>
 
                 </form>
@@ -120,4 +128,14 @@ class UserInputs extends Component{
     }
 }
 
-export default UserInputs;
+
+UserInputs.propTypes = {
+    mental : PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  
+    mental : state.volunteer.videoSearchM
+})
+  
+export default connect(mapStateToProps,{ getUserChoice,updatUserChoice})(UserInputs);

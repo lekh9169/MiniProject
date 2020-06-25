@@ -1,4 +1,4 @@
-import { GET_VOLUNTEERS } from '../actions/types';
+import { GET_VOLUNTEERS,GET_USER_CHOICE,UPDATE_USER_CHOICE } from '../actions/types';
 
 const initialState = {
     volunteers : [
@@ -89,8 +89,8 @@ const initialState = {
             email : 'johndoe@gmail.com',
             phone : '111-111-1111',
             about:'Lorem ipsum color sit Fugit itaque perferendis reprehenderit officiis provident et itaque quidem modi repellendus aliquid '}
-    ]
-
+    ],
+    videoSearchM:" English Motivational Videos"
 };
 
 export default function(state=initialState,action) {
@@ -99,7 +99,16 @@ export default function(state=initialState,action) {
             return {
                 ...state
             };
-
+        case GET_USER_CHOICE:
+            return{
+                ...state,
+                videoSearchM: action.payload
+            }
+        case UPDATE_USER_CHOICE:
+            return{
+                ...state,
+                videoSearchM: action.payload
+            }
         default: 
             return state; 
     }

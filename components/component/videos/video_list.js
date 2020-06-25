@@ -16,8 +16,9 @@ const VideoList = (props) => {
         <VideoListItem
             //onUserSelected={props.onVideoSelect}
             
-            key={video.etag}
-            video={video} />
+            //key={video.etag}
+            video={video} 
+        />
         );
     });
 

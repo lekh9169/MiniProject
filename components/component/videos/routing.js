@@ -1,22 +1,17 @@
 import React, {Component} from 'react';
 
-import UserInputs from './user_inputs';
+import { connect } from 'react-redux';
+import { GET_VOLUNTEERS } from '../../actions/types';
+
 import SearchBar from './search_bar';
 import YTSearch from 'youtube-api-search';
 import VideoList from './video_list';
 import VideoDetail from './video_details';
 import "./complete.css"
 
-const API_KEY =" ";//"AIzaSyALY8xL3Y85VTF27ABKdd4HRTihe13beAA";
+const API_KEY ="AIzaSyALY8xL3Y85VTF27ABKdd4HRTihe13beAA";
 
-const User_In = () => {
-    return (
-      <div>
-        <UserInputs/>
-      </div>
-    );
-};
-  
+
 
 class CuratedContents extends Component{
 
@@ -26,7 +21,7 @@ class CuratedContents extends Component{
       this.state = {
         index: 0,
         indexm:0,
-        videos: [],
+        videos: [1,2,3,4,5],
         motivates: ["Talk to friends or family face-to-face",
           "Spend some time in nature",
           "Read a good book",
@@ -39,9 +34,13 @@ class CuratedContents extends Component{
         completed: false,
         
       };
-      this.videoSearch('English Motivational Videos');
+      
     }
-    
+    componentDidMount(){
+      this.props.getVolunteers();
+      console.log(this.props,"this is video section")
+      this.videoSearch(this.props.mental);
+    }
   
   
   videoCompleted = (completed) => {
@@ -65,9 +64,10 @@ class CuratedContents extends Component{
     console.log(this.state)
     return(
       <div className="videos">
+        
         <SearchBar onSearchTermChange={searchTerm => this.videoSearch(searchTerm)}/>
         <div class="row">
-          <div class="column">
+          <div class="container column">
             <VideoDetail 
               video={this.state.selectedVideo} 
               onCompletion={comp => this.videoCompleted(comp)} 
@@ -76,7 +76,7 @@ class CuratedContents extends Component{
             />
         
           </div>
-          <div class="container column">
+          <div class="container columnList">
             <VideoList
               onVideoSelect={userSelected => this.setState({selectedVideo: userSelected})}
               completed={this.state.completed}
@@ -94,5 +94,12 @@ class CuratedContents extends Component{
   }
 }
 
+const mapStateToProps = (state) => ({
+  
+  mental : state.volunteer.videoSearchM
+})
+const mapDispatchToProps = (dispatch) => ({
+  getVolunteers: () => dispatch({type:GET_VOLUNTEERS})
+})
 
-export default CuratedContents;
+export default connect(mapStateToProps,mapDispatchToProps)(CuratedContents);

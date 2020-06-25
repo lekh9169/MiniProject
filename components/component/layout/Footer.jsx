@@ -1,23 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Layout } from 'antd';
+import { Link } from '@reach/router';
+import { About } from '../pages/About';
+import { Row, Col, Divider } from 'antd';
+import "../videos/complete.css"
+const { Header, Footer, Sider, Content } = Layout;
+
+const DemoBox = props => <p className={`height-${props.value}`}>{props.children}</p>;
 
 
-export default function Footer() {
-    return (
-        <>
-        <footer id="main-footer" class="text-center p-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h5>Team Ment</h5>
-                        <p>Copyright &copy; {(new Date().getFullYear())}</p>
-                    </div>
-                    <div class="col">
-                        <h5>Quick Links</h5>
-                        <a href="about.html" class="h6 text-info">About</a><br></br>
-                    </div>
-                </div>
+
+
+
+class FooterOfApp extends Component {
+    render() {
+        return (
+            <div className="Footer">
+                <Layout>
+                 <Layout>
+                    
+                    <Footer style={{background:'black'}}>
+                     
+                        <Row justify="space-around" align="middle">
+                        <Col style={{color:'white'}} span={4}>
+                            
+                        </Col>
+                        <Col style={{color:'white'}} span={4}>
+                            <h3 style={{color:'white'}}>TEAM MENT</h3>
+                            <p style={{justifyContent: 'center', alignItems: 'center',color:'white'}}>Copyright &copy; {(new Date().getFullYear())}</p>
+                        </Col>
+                        <Col style={{color:'white'}} span={4}>
+                        <h5 style={{color:"white"}}>Quick Links</h5>
+                            <Link to="about.html" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About</Link><br></br>
+                        </Col>
+                        <Col style={{color:'white'}} span={4}>
+                        </Col>
+                        </Row>
+                        </Footer>
+                </Layout>
+                </Layout>
+
+                
+                   
+                
             </div>
-        </footer>
-        </>
-    )
+        )
+    }
 }
+
+export default FooterOfApp;

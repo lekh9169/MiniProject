@@ -22,7 +22,9 @@ import { GET_VOLUNTEERS } from '../../actions/types';
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => (
+    {
+    
     volunteers : state.volunteer.volunteers
 })
 const mapDispatchToProps = (dispatch) => ({

@@ -9,7 +9,7 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import MyPosts from './MyPosts'
-
+import Particles from 'react-particles-js';
 
 const {SubMenu} = Menu;
 function PostApp(props){
@@ -18,7 +18,7 @@ function PostApp(props){
     return (
         
           <div className="app_container">
-            
+              
               <div className="app_main_navigation">
                
                   <Menu mode="horizontal">

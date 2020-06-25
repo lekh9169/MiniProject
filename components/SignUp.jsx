@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { PageHeader ,Input,Button} from 'antd';
 import {auth} from '../firebase'
-
+import "./component/videos/complete.css"
 const SignUp = (props) => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')

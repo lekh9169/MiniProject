@@ -8,6 +8,7 @@ class Volunteer extends Component {
 
     componentDidMount(){
         this.props.getVolunteers();
+        console.log(this.props);
     }
     
     styleElement = {
@@ -48,7 +49,8 @@ class Volunteer extends Component {
     
 }
 const mapStateToProps = (state) => ({
-    volunteers : state.volunteer.volunteers
+    volunteers : state.volunteer.volunteers,
+    mental : state.volunteer.videoSearchM
 })
 const mapDispatchToProps = (dispatch) => ({
     getVolunteers: () => dispatch({type:GET_VOLUNTEERS})

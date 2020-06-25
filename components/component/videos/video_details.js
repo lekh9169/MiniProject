@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player'
-import "./player.css"
+//import "./player.css"
 import "./complete.css"
-
+import { navigate } from "@reach/router"
 const VideoDetail = (props) => {
     
 
@@ -25,6 +25,9 @@ const VideoDetail = (props) => {
         }
 
     }
+    const onChange=()=>{
+        navigate('/userInput')
+    }
     const handelComplete =({played}) => {
         console.log(played)
         if(played >= 0.7 && !watchComplete){
@@ -33,9 +36,9 @@ const VideoDetail = (props) => {
     }
     console.log(props)
     return (
-        <div className="container row-md-8">
+        <div>
             
-            <div class="container">
+            <div >
                 <ReactPlayer 
                     className="react-player "
                     url={url}
@@ -51,6 +54,10 @@ const VideoDetail = (props) => {
                     watchComplete ? "button btnIsComplete":"button btnIsNotComplete tooltip"
                     }>
                     Go to next video<span class={watchComplete ? "tooltiptextIncomplete":"tooltiptext"}>on completion of Video(70%)</span>
+                </button>
+                <button onClick={onChange} className={"button btnforChange tooltip"
+                    }>
+                    Change<span class={watchComplete ? "tooltiptextIncomplete":"tooltiptext"}>Change your Preferences</span>
                 </button>
 
             </div> 

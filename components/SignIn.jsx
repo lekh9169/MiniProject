@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { PageHeader ,Input,Button} from 'antd';
 import {auth} from '../firebase'
 import { navigate } from "@reach/router"
+import "./component/videos/complete.css"
 const SignIn = (props) => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
